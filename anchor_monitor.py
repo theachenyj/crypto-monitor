@@ -21,7 +21,8 @@ apy_url = 'https://api.anchorprotocol.com/api/v1/market/ust'
 price_url = 'https://api2.binance.com/api/v3/ticker/price?symbol=LUNAUSDT'
 
 # 定义Webhook地址
-webhook_url = 'https://discord.com/api/webhooks/918127616056242227/MIltISrE00cy87DHL6qrHyHwTWFzoOMSUqrkWEJ8_A1RxSwyCD-9XuDwa-isoYIo9jNS'
+webhook_url_1 = 'https://discord.com/api/webhooks/918127616056242227/MIltISrE00cy87DHL6qrHyHwTWFzoOMSUqrkWEJ8_A1RxSwyCD-9XuDwa-isoYIo9jNS' # personal
+webhook_url_2 = 'https://discord.com/api/webhooks/907210443154657300/SkA7sqA_YnzLaQsCYyq01UnGhkWpauRzrCiut43D9G8mQDaOhFjlk2LcBnLawjnuPPaV' #sister
 
 
 def get_data():
@@ -97,9 +98,10 @@ while True:
     print(message)
 
     # 推送discord
-    requests.post(webhook_url, json=payload)
+    requests.post(webhook_url_1, json=payload)
+    requests.post(webhook_url_2, json=payload)
 
-    sleep(3600)
+    sleep(28800) # 睡8小时
 
 
 
