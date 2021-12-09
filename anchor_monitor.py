@@ -88,7 +88,7 @@ while True:
     LAST_TVL = tvl
     LAST_PRICE = price
 
-    message = f"【（测试）Anchor 监控】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
+    message = f"【Anchor 监控】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
     payload = {
         "username": "Monitor Cat",
         "content": message
