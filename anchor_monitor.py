@@ -5,6 +5,7 @@ import requests
 import json
 from time import sleep
 import math
+import csv
 
 """
 获取系统时间，如果为整点，获取 Anchor TVL，LUNA 价格推送 discord
@@ -12,7 +13,6 @@ import math
 # 存储上一次数据变量，计算环比
 LAST_TVL = 0.0
 LAST_PRICE = 0.0
-LAST_APY = 0.0
 
 # 定义数据获取地址
 deposit_url = 'https://api.anchorprotocol.com/api/v1/deposit'
@@ -21,8 +21,8 @@ apy_url = 'https://api.anchorprotocol.com/api/v1/market/ust'
 price_url = 'https://api2.binance.com/api/v3/ticker/price?symbol=LUNAUSDT'
 
 # 定义Webhook地址
-webhook_url_1 = 'https://discord.com/api/webhooks/918127616056242227/MIltISrE00cy87DHL6qrHyHwTWFzoOMSUqrkWEJ8_A1RxSwyCD-9XuDwa-isoYIo9jNS' # personal
-webhook_url_2 = 'https://discord.com/api/webhooks/907210443154657300/SkA7sqA_YnzLaQsCYyq01UnGhkWpauRzrCiut43D9G8mQDaOhFjlk2LcBnLawjnuPPaV' #sister
+webhook_url_1 = 'https://discord.com/api/webhooks/923789940301643838/0Y4wj11nA7yw-wRoDSKWkR0xmnpmDvGlT6v-noLJw_wb1vvrl__HW_2-UTJN-akGQE9F' # personal
+webhook_url_2 = 'https://discord.com/api/webhooks/923588727274627144/Z5T1zilP9t9j0Fnzh11yt9ZYSU-_Vczj8fGV7amv93iixyKMwi23FFa3xPp43Z5Bezmo' #sister
 
 
 def get_data():
@@ -68,40 +68,49 @@ def get_data():
     return total_deposits+total_collaterals,apy,price
 
 # 初始化
-LAST_TVL,LAST_APY,LAST_PRICE = get_data()
+with open('/Users/theachen/Dropbox/PY/LAB/git/crypto-monitor/last_data.csv') as f:
+    for line in f:
+        row = line.split(',')
+        LAST_PRICE = float(row[0])
+        LAST_TVL = float(row[1])
 
-# 每个小时执行
-while True:
-    data_time =  datetime.now()
-    tvl,apy,price = get_data()
-    tvl_diff = (tvl - LAST_TVL)/LAST_TVL
-    price_diff = (price - LAST_PRICE)/LAST_PRICE
+# crontab 每个小时执行
+data_time =  datetime.now()
+tvl,apy,price = get_data()
+tvl_diff = (tvl - LAST_TVL)/LAST_TVL
+price_diff = (price - LAST_PRICE)/LAST_PRICE
 
-    data_time_display = data_time.strftime("%Y-%m-%d %H:%M:%S")
-    tvl_display = '{:,}'.format(math.floor(tvl))
-    apy_display = '{:.4%}'.format(apy)
-    tvl_diff_display = '{:.4%}'.format(tvl_diff)
-    price_diff_display = '{:.4%}'.format(price_diff)
+data_time_display = data_time.strftime("%Y-%m-%d %H:%M:%S")
+tvl_display = '{:,}'.format(math.floor(tvl))
+apy_display = '{:.4%}'.format(apy)
+tvl_diff_display = '{:.4%}'.format(tvl_diff)
+price_diff_display = '{:.4%}'.format(price_diff)
 
 
-    # 更新上一次数据
-    LAST_TVL = tvl
-    LAST_PRICE = price
+# 更新上一次数据
+row = [price,tvl]
 
-    message = f"【Anchor 监控】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
-    payload = {
-        "username": "Monitor Cat",
-        "content": message
-    }
+# 以写模式打开文件，【todo 需要补绝对路径】
+with open('/Users/theachen/Dropbox/PY/LAB/git/crypto-monitor/last_data.csv', 'w', encoding='UTF8', newline='') as f:
+    # 创建CSV写入器
+    writer = csv.writer(f)
 
-    # 打印
-    print(message)
+    # 向CSV文件写内容
+    writer.writerow(row)
 
-    # 推送discord
-    requests.post(webhook_url_1, json=payload)
-    requests.post(webhook_url_2, json=payload)
 
-    sleep(28800) # 睡8小时
+message = f"【Anchor 监控】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
+payload = {
+    "username": "Monitor Cat",
+    "content": message
+}
+
+# 打印
+print(message)
+
+# 推送discord
+#requests.post(webhook_url_1, json=payload)
+#requests.post(webhook_url_2, json=payload)
 
 
 
