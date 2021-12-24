@@ -67,8 +67,8 @@ def get_data():
 
     return total_deposits+total_collaterals,apy,price
 
-# 初始化
-with open('/Users/theachen/Dropbox/PY/LAB/git/crypto-monitor/last_data.csv') as f:
+# 获取上一次数据
+with open('~/crypto-monitor/last_data.csv') as f:
     for line in f:
         row = line.split(',')
         LAST_PRICE = float(row[0])
@@ -90,8 +90,8 @@ price_diff_display = '{:.4%}'.format(price_diff)
 # 更新上一次数据
 row = [price,tvl]
 
-# 以写模式打开文件，【todo 需要补绝对路径】
-with open('/Users/theachen/Dropbox/PY/LAB/git/crypto-monitor/last_data.csv', 'w', encoding='UTF8', newline='') as f:
+# 以写模式打开文件
+with open('~/crypto-monitor/last_data.csv', 'w', encoding='UTF8', newline='') as f:
     # 创建CSV写入器
     writer = csv.writer(f)
 
