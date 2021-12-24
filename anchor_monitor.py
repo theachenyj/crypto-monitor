@@ -109,8 +109,8 @@ payload = {
 print(message)
 
 # 推送discord
-#requests.post(webhook_url_1, json=payload)
-#requests.post(webhook_url_2, json=payload)
+requests.post(webhook_url_1, json=payload)
+requests.post(webhook_url_2, json=payload)
 
 
 
