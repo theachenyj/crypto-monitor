@@ -25,7 +25,7 @@ csv_path = '/root/crypto-monitor/last_data.csv'
 
 # 定义Webhook地址
 webhook_url_1 = 'https://discord.com/api/webhooks/924867380746780703/qV7V-z01cxl9d8ynexLB7Z-LKWeBDyenXboxGYz8HHPheVkmMDsNp3xweaOAWRZ_9wSm' # personal
-webhook_url_2 = '' #sister
+webhook_url_2 = 'https://discord.com/api/webhooks/924891632749412412/iwej5Ar-QvZtzqcjl3da26Bc8MSLYYDeL7JPXGj3fTNv12FiJSPkj3Vghp1qs0sOq6IC' #sister
 
 
 def get_data():
@@ -113,7 +113,7 @@ print(message)
 
 # 推送discord
 requests.post(webhook_url_1, json=payload)
-#requests.post(webhook_url_2, json=payload)
+requests.post(webhook_url_2, json=payload)
 
 
 
