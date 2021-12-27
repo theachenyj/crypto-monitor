@@ -102,7 +102,7 @@ with open(csv_path, 'w', encoding='UTF8', newline='') as f:
     writer.writerow(row)
 
 
-message = f"【Anchor 监控（测试）】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
+message = f"【Anchor 监控】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
 payload = {
     "username": "Monitor Cat",
     "content": message
