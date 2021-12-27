@@ -21,8 +21,8 @@ apy_url = 'https://api.anchorprotocol.com/api/v1/market/ust'
 price_url = 'https://api2.binance.com/api/v3/ticker/price?symbol=LUNAUSDT'
 
 # 定义Webhook地址
-webhook_url_1 = 'https://discord.com/api/webhooks/923789940301643838/0Y4wj11nA7yw-wRoDSKWkR0xmnpmDvGlT6v-noLJw_wb1vvrl__HW_2-UTJN-akGQE9F' # personal
-webhook_url_2 = 'https://discord.com/api/webhooks/923588727274627144/Z5T1zilP9t9j0Fnzh11yt9ZYSU-_Vczj8fGV7amv93iixyKMwi23FFa3xPp43Z5Bezmo' #sister
+webhook_url_1 = 'https://discord.com/api/webhooks/924867380746780703/qV7V-z01cxl9d8ynexLB7Z-LKWeBDyenXboxGYz8HHPheVkmMDsNp3xweaOAWRZ_9wSm' # personal
+webhook_url_2 = '' #sister
 
 
 def get_data():
@@ -99,7 +99,7 @@ with open('~/crypto-monitor/last_data.csv', 'w', encoding='UTF8', newline='') as
     writer.writerow(row)
 
 
-message = f"【Anchor 监控】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
+message = f"【Anchor 监控（测试）】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
 payload = {
     "username": "Monitor Cat",
     "content": message
@@ -110,7 +110,7 @@ print(message)
 
 # 推送discord
 requests.post(webhook_url_1, json=payload)
-requests.post(webhook_url_2, json=payload)
+#requests.post(webhook_url_2, json=payload)
 
 
 
