@@ -20,6 +20,9 @@ collaterals_url = 'https://api.anchorprotocol.com/api/v1/collaterals'
 apy_url = 'https://api.anchorprotocol.com/api/v1/market/ust'
 price_url = 'https://api2.binance.com/api/v3/ticker/price?symbol=LUNAUSDT'
 
+# 存上一次文件路径
+csv_path = '/Users/theachen/Dropbox/PY/LAB/git/crypto-monitor/last_data.csv'
+
 # 定义Webhook地址
 webhook_url_1 = 'https://discord.com/api/webhooks/924867380746780703/qV7V-z01cxl9d8ynexLB7Z-LKWeBDyenXboxGYz8HHPheVkmMDsNp3xweaOAWRZ_9wSm' # personal
 webhook_url_2 = '' #sister
@@ -68,7 +71,7 @@ def get_data():
     return total_deposits+total_collaterals,apy,price
 
 # 获取上一次数据
-with open('last_data.csv') as f:
+with open(csv_path) as f:
     for line in f:
         row = line.split(',')
         LAST_PRICE = float(row[0])
@@ -91,7 +94,7 @@ price_diff_display = '{:.4%}'.format(price_diff)
 row = [price,tvl]
 
 # 以写模式打开文件
-with open('last_data.csv', 'w', encoding='UTF8', newline='') as f:
+with open(csv_path, 'w', encoding='UTF8', newline='') as f:
     # 创建CSV写入器
     writer = csv.writer(f)
 
