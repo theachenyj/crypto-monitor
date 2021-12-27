@@ -21,7 +21,7 @@ apy_url = 'https://api.anchorprotocol.com/api/v1/market/ust'
 price_url = 'https://api2.binance.com/api/v3/ticker/price?symbol=LUNAUSDT'
 
 # 存上一次文件路径
-csv_path = '~/crypto-monitor/last_data.csv'
+csv_path = '/root/crypto-monitor/last_data.csv'
 
 # 定义Webhook地址
 webhook_url_1 = 'https://discord.com/api/webhooks/924867380746780703/qV7V-z01cxl9d8ynexLB7Z-LKWeBDyenXboxGYz8HHPheVkmMDsNp3xweaOAWRZ_9wSm' # personal
