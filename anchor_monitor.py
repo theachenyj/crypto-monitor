@@ -25,7 +25,7 @@ csv_path = '/root/crypto-monitor/last_data.csv'
 
 # 定义Webhook地址
 webhook_url_1 = 'https://discord.com/api/webhooks/925220656797327401/KqaH0FDuRn51L2ro_I3Yh_T9dP4pr3mVGzNb9K4UNnVe0VXljzOCUZ7TODclkJ81kOo9' # personal
-webhook_url_2 = 'https://discord.com/api/webhooks/924891632749412412/iwej5Ar-QvZtzqcjl3da26Bc8MSLYYDeL7JPXGj3fTNv12FiJSPkj3Vghp1qs0sOq6IC' #sister
+webhook_url_2 = 'https://discord.com/api/webhooks/924326162660991046/OjKmVKZwLbsjXzzGk_UI-E2igbmm-0OGXzZGeTfOAoN3H6kCQfQpaNh7fnCdE3WLaVG2' #sister
 
 
 def get_data():
@@ -102,7 +102,7 @@ with open(csv_path, 'w', encoding='UTF8', newline='') as f:
     writer.writerow(row)
 
 
-message = f"【Anchor 监控（）】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
+message = f"【Anchor 监控】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
 payload = {
     "username": "Monitor Cat",
     "content": message
@@ -113,7 +113,7 @@ print(message)
 
 # 推送discord
 requests.post(webhook_url_1, json=payload)
-#requests.post(webhook_url_2, json=payload)
+requests.post(webhook_url_2, json=payload)
 
 
 
