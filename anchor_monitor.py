@@ -24,7 +24,7 @@ price_url = 'https://api2.binance.com/api/v3/ticker/price?symbol=LUNAUSDT'
 csv_path = '/root/crypto-monitor/last_data.csv'
 
 # 定义Webhook地址
-webhook_url_1 = 'https://discord.com/api/webhooks/924867380746780703/qV7V-z01cxl9d8ynexLB7Z-LKWeBDyenXboxGYz8HHPheVkmMDsNp3xweaOAWRZ_9wSm' # personal
+webhook_url_1 = 'https://discord.com/api/webhooks/925220656797327401/KqaH0FDuRn51L2ro_I3Yh_T9dP4pr3mVGzNb9K4UNnVe0VXljzOCUZ7TODclkJ81kOo9' # personal
 webhook_url_2 = 'https://discord.com/api/webhooks/924891632749412412/iwej5Ar-QvZtzqcjl3da26Bc8MSLYYDeL7JPXGj3fTNv12FiJSPkj3Vghp1qs0sOq6IC' #sister
 
 
