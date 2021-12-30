@@ -25,11 +25,12 @@ csv_path = '/root/crypto-monitor/last_data.csv'
 
 # 定义Webhook地址
 #slack
-webhook_url = 'https://hooks.slack.com/services/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'
-"""discord
-webhook_url_1 = 'https://discord.com/api/webhooks/925392888312004658/yhnDZr3oyl-V9P1Vh89zbPBZAcdsVEWZuv9AGMHQRr8_6I2oW84Q21nhlQxGhqV11vlS' # personal
+#webhook_url = 'https://hooks.slack.com/services/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'
+
+#discord
+webhook_url_1 = 'https://discord.com/api/webhooks/925697346682097684/1wSJccoHQHxI_Wd9gNLl19r_dhs9iiyGfx_0_5T5WMyWXY1aXJQG3iUIIyHKywVgJb6E' # personal
 webhook_url_2 = 'https://discord.com/api/webhooks/924326162660991046/OjKmVKZwLbsjXzzGk_UI-E2igbmm-0OGXzZGeTfOAoN3H6kCQfQpaNh7fnCdE3WLaVG2' #sister
-"""
+
 
 def get_data():
 
@@ -107,19 +108,20 @@ with open(csv_path, 'w', encoding='UTF8', newline='') as f:
 
 message = f"【Anchor 监控】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
 payload = {
-    "text": message
+    "username": "Monitor Cat",
+    "content": message
 }
 
 # 打印
 print(message)
 
 #推送slack
-requests.post(webhook_url, json=payload)
-"""
+#requests.post(webhook_url, json=payload)
+
 # 推送discord
 requests.post(webhook_url_1, json=payload)
-requests.post(webhook_url_2, json=payload)
-"""
+#requests.post(webhook_url_2, json=payload)
+
 
 
 
