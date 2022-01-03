@@ -21,16 +21,14 @@ apy_url = 'https://api.anchorprotocol.com/api/v1/market/ust'
 price_url = 'https://api2.binance.com/api/v3/ticker/price?symbol=LUNAUSDT'
 
 # 存上一次文件路径
-csv_path = '/root/crypto-monitor/last_data.csv'
+csv_path = '/Users/theachen/Dropbox/PY/LAB/git/crypto-monitor/last_data.csv'
 
-# 定义Webhook地址
-#slack
-#webhook_url = 'https://hooks.slack.com/services/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'
 
-#discord
-webhook_url_1 = 'https://discord.com/api/webhooks/925697346682097684/1wSJccoHQHxI_Wd9gNLl19r_dhs9iiyGfx_0_5T5WMyWXY1aXJQG3iUIIyHKywVgJb6E' # personal
-webhook_url_2 = 'https://discord.com/api/webhooks/924326162660991046/OjKmVKZwLbsjXzzGk_UI-E2igbmm-0OGXzZGeTfOAoN3H6kCQfQpaNh7fnCdE3WLaVG2' #sister
+"""# 定义Webhook地址
+webhook_url = 'https://hooks.slack.com/services/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'"""
 
+# IFTTT anchor_monitor 地址
+ifttt_url = 'https://maker.ifttt.com/trigger/anchor_monitor/with/key/bVGEDkrCumRST4bL2kYcoC'
 
 def get_data():
 
@@ -105,23 +103,21 @@ with open(csv_path, 'w', encoding='UTF8', newline='') as f:
     # 向CSV文件写内容
     writer.writerow(row)
 
+apy_messege = str(apy_display)
+tvl_messege = str(tvl_display)+'('+str(tvl_diff_display)+')'
+price_messege = str(price) + '(' + str(price_diff_display) + ')'
 
-message = f"【Anchor 监控】\n{data_time_display}\nAPY: {apy_display}\ntvl: {tvl_display}  tvl环比: {tvl_diff_display}\nLuna 价格: {price}  Luna 价格环比: {price_diff_display}"
 payload = {
-    "username": "Monitor Cat",
-    "content": message
+    "value1": apy_messege,
+    "value2": tvl_messege,
+    "value3": price_messege
+
 }
 
-# 打印
-print(message)
 
-#推送slack
-#requests.post(webhook_url, json=payload)
-
-# 推送discord
-requests.post(webhook_url_1, json=payload)
-#requests.post(webhook_url_2, json=payload)
-
+# 推送ifttt
+requests.post(ifttt_url, params=payload)
+# requests.post(webhook_url_2, json=payload)
 
 
 
