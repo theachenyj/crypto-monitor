@@ -21,7 +21,7 @@ apy_url = 'https://api.anchorprotocol.com/api/v1/market/ust'
 price_url = 'https://api2.binance.com/api/v3/ticker/price?symbol=LUNAUSDT'
 
 # 存上一次文件路径
-csv_path = '/Users/theachen/Dropbox/PY/LAB/git/crypto-monitor/last_data.csv'
+csv_path = '/root/crypto-monitor/last_data.csv'
 
 
 """# 定义Webhook地址
